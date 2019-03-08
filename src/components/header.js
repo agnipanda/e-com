@@ -5,25 +5,23 @@ import {Link} from 'react-router-dom'
 class Header extends React.Component {
     render() {
         return (
-            <div className="ui secondary  menu">
+            <div className="ui secondary blue inverted menu">
               <a className="active item">
                 Home
               </a>
-              <a className="item">
-                Messages
-              </a>
-              <a className="item">
-                Friends
-              </a>
               <div className="right menu">
                 <div className="item">
-                  <div className="ui icon input">
-                    <input type="text" placeholder="Search..."/>
-                    <i className="search link icon"></i>
+                  <div className="ui input small">
+                    <input type="text" placeholder="username or email"/>
+                  </div>
+                </div>
+                <div className="item">
+                  <div className="ui input small">
+                    <input type="text" placeholder="password"/>
                   </div>
                 </div>
                 <a className="ui item">
-                  Logout
+                  Login
                 </a>
               </div>
             </div>

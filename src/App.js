@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
-import Header from './components/header';
+import Register from './components/register';
 import {Switch, BrowserRouter as Router, Route} from 'react-router-dom';
 
 class App extends Component {
@@ -9,7 +9,7 @@ class App extends Component {
         <div className="App" className="container">
             <Router>
                 <Switch>
-                    <Header/>
+                    <Register/>
                 </Switch>
             </Router>
         </div>
