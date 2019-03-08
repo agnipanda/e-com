@@ -10,34 +10,43 @@ class Register extends React.Component {
             name: '',
             email: '',
             password: '',
-            cpassword: '',
             gender: '',
-            date: null
+            date: null,
+            error: ''
         }
         this.handleRegister = this.handleRegister.bind(this)
     }
     handleRegister(e){
         e.preventDefault();
-        this.setState({
-            name: e.target[0].value,
-            email: e.target[1].value,
-            password: e.target[2].value,
-            cpassword: e.target[3].value,
-            gender: e.target[4].value,
-            date: e.target[5].value
-        })
-        const formData = new FormData();
-        formData.append('name', this.state.name);
-        formData.append('email', this.state.email);
-        formData.append('password', this.state.password);
-        formData.append('gender', this.state.gender);
-        formData.append('date', this.state.date);
+
+        if(e.target[2].value == e.target[3].value){
+            var formData = {
+                name: e.target[0].value,
+                email: e.target[1].value,
+                password: e.target[2].value,
+                gender: e.target[4].value,
+                date: e.target[5].value
+            }
+            axios.post('http://localhost:8000/register', formData).then(response => {
+                this.setState({
+                    error:response.data
+                })
+            }).catch(error => {
+                console.log(error);
+            })
+        }
+        else {
+            this.setState({
+                error:"Password doesn't match.."
+            })
+        }
     }
     render() {
             return (
             <div className="ui container">
                 <Header/>
                 <div className="ui rail text container segment" style={{float:'right'}}>
+                    <p style={{color:'red'}}>{this.state.error}</p>
                     <h1>Create an Account</h1>
                     <form id="loginform" className="ui form" onSubmit={this.handleRegister}>
                         <div className="field">
@@ -47,7 +56,7 @@ class Register extends React.Component {
                         <div className="field">
                             <label>Password</label><input name="password" type="password" placeholder="password" required/></div>
                                 <div className="field">
-                                    <label>Confirm Password</label><input name="cpassword" type="password" placeholder="confirm password" required/></div>
+                                    <label>Confirm Password</label><input name="password" type="password" placeholder="confirm password" required/></div>
                         <div className="field">
                             <label>Gender</label>
                             <select name="gender" name="gender" className="ui dropdown">
